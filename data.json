@@ -1,183 +1,186 @@
 {
-  "generated": "07.04.2026 00:00",
-  "analyzers": {
-    "MINDRAY BC-5380": [
-      {
-        "product": "CBC-QC High",
-        "days": 33,
-        "status": "ATENTIE",
-        "count": 1
-      },
-      {
-        "product": "CBC-QC Low",
-        "days": 33,
-        "status": "ATENTIE",
-        "count": 1
-      },
-      {
-        "product": "CBC-QC Normal",
-        "days": 33,
-        "status": "ATENTIE",
-        "count": 1
-      },
-      {
-        "product": "Probe Cleanser",
-        "days": 212,
-        "status": "OK",
-        "count": 3
-      },
-      {
-        "product": "M-53LEO(II) LYSE",
-        "days": 247,
-        "status": "OK",
-        "count": 8
-      },
-      {
-        "product": "M-53LH LYSE",
-        "days": 357,
-        "status": "OK",
-        "count": 5
-      },
-      {
-        "product": "M-53D DILUENT",
-        "days": 498,
-        "status": "OK",
-        "count": 2
-      },
-      {
-        "product": "M-53LEO(I) LYSE",
-        "days": 508,
-        "status": "OK",
-        "count": 5
-      }
-    ],
-    "Coloranti": [
-      {
-        "product": "RETI COUNT 200 mL",
-        "days": 283,
-        "status": "OK",
-        "count": 1
-      }
-    ],
-    "ACL ELITE PRO": [
-      {
-        "product": "Cleaning Agent (B)",
-        "days": 54,
-        "status": "ATENTIE",
-        "count": 1
-      },
-      {
-        "product": "Fibrinogen Clauss",
-        "days": 299,
-        "status": "OK",
-        "count": 2
-      },
-      {
-        "product": "Cleaning Solution (A)",
-        "days": 327,
-        "status": "OK",
-        "count": 3
-      },
-      {
-        "product": "APTT SP",
-        "days": 358,
-        "status": "OK",
-        "count": 2
-      },
-      {
-        "product": "RecombiPlasTin 2G",
-        "days": 358,
-        "status": "OK",
-        "count": 2
-      },
-      {
-        "product": "Wash-R",
-        "days": 388,
-        "status": "OK",
-        "count": 10
-      },
-      {
-        "product": "Calibration Plasma",
-        "days": 480,
-        "status": "OK",
-        "count": 1
-      },
-      {
-        "product": "Factor Diluent ACL",
-        "days": 602,
-        "status": "OK",
-        "count": 2
-      },
-      {
-        "product": "Normal Control Assayed",
-        "days": 754,
-        "status": "OK",
-        "count": 2
-      },
-      {
-        "product": "Low Abnormal Control Assayed",
-        "days": 785,
-        "status": "OK",
-        "count": 2
-      },
-      {
-        "product": "High Abnormal Control Assayed",
-        "days": 815,
-        "status": "OK",
-        "count": 2
-      }
-    ],
-    "DxH 690T": [
-      {
-        "product": "6C Plus Cellcontrol",
-        "days": 35,
-        "status": "ATENTIE",
-        "count": 1
-      },
-      {
-        "product": "DxH Cleaner",
-        "days": 105,
-        "status": "OK",
-        "count": 3
-      },
-      {
-        "product": "COULTER LATRON CP-X",
-        "days": 151,
-        "status": "OK",
-        "count": 1
-      },
-      {
-        "product": "COULTER DxH DIFF PACK",
-        "days": 161,
-        "status": "OK",
-        "count": 1
-      },
-      {
-        "product": "DxH Diluent",
-        "days": 350,
-        "status": "OK",
-        "count": 8
-      },
-      {
-        "product": "COULTER DxH CELL LYSE",
-        "days": 413,
-        "status": "OK",
-        "count": 1
-      }
-    ],
-    "Grupe+Rh": [
-      {
-        "product": "Kit Grupare Atlas",
-        "days": 425,
-        "status": "OK",
-        "count": 2
-      },
-      {
-        "product": "Kit Grupare Lorne",
-        "days": 457,
-        "status": "OK",
-        "count": 1
-      }
-    ]
-  }
+  "generated": "07.04.2026 13:06",
+  "expiring": [
+    {
+      "product": "CBC-QC High",
+      "analyzer": "MINDRAY BC-5380",
+      "days": 33,
+      "status": "OK",
+      "count": 1
+    },
+    {
+      "product": "CBC-QC Low",
+      "analyzer": "MINDRAY BC-5380",
+      "days": 33,
+      "status": "OK",
+      "count": 1
+    },
+    {
+      "product": "CBC-QC Normal",
+      "analyzer": "MINDRAY BC-5380",
+      "days": 33,
+      "status": "OK",
+      "count": 1
+    },
+    {
+      "product": "6C Plus Cellcontrol",
+      "analyzer": "DxH 690T",
+      "days": 35,
+      "status": "OK",
+      "count": 1
+    },
+    {
+      "product": "Cleaning Agent (B)",
+      "analyzer": "ACL ELITE PRO",
+      "days": 54,
+      "status": "OK",
+      "count": 1
+    }
+  ],
+  "onboard": [
+    {
+      "product": "Calibration Plasma",
+      "analyzer": "ACL ELITE PRO",
+      "limit": 1,
+      "used": 49,
+      "remaining": -48,
+      "status": "EXPIRAT"
+    },
+    {
+      "product": "RecombiPlasTin 2G",
+      "analyzer": "ACL ELITE PRO",
+      "limit": 25,
+      "used": 14,
+      "remaining": 11,
+      "status": "OK"
+    },
+    {
+      "product": "CBC-QC High",
+      "analyzer": "MINDRAY BC-5380",
+      "limit": 14,
+      "used": 1,
+      "remaining": 13,
+      "status": "OK"
+    },
+    {
+      "product": "CBC-QC Low",
+      "analyzer": "MINDRAY BC-5380",
+      "limit": 14,
+      "used": 1,
+      "remaining": 13,
+      "status": "OK"
+    },
+    {
+      "product": "CBC-QC Normal",
+      "analyzer": "MINDRAY BC-5380",
+      "limit": 14,
+      "used": 1,
+      "remaining": 13,
+      "status": "OK"
+    },
+    {
+      "product": "Normal Control Assayed",
+      "analyzer": "ACL ELITE PRO",
+      "limit": 30,
+      "used": 6,
+      "remaining": 24,
+      "status": "OK"
+    },
+    {
+      "product": "Low Abnormal Control Assayed",
+      "analyzer": "ACL ELITE PRO",
+      "limit": 30,
+      "used": 6,
+      "remaining": 24,
+      "status": "OK"
+    },
+    {
+      "product": "High Abnormal Control Assayed",
+      "analyzer": "ACL ELITE PRO",
+      "limit": 30,
+      "used": 6,
+      "remaining": 24,
+      "status": "OK"
+    },
+    {
+      "product": "Fibrinogen Clauss",
+      "analyzer": "ACL ELITE PRO",
+      "limit": 30,
+      "used": 6,
+      "remaining": 24,
+      "status": "OK"
+    },
+    {
+      "product": "Probe Cleanser",
+      "analyzer": "MINDRAY BC-5380",
+      "limit": 60,
+      "used": 15,
+      "remaining": 45,
+      "status": "OK"
+    },
+    {
+      "product": "M-53LEO(II) LYSE",
+      "analyzer": "MINDRAY BC-5380",
+      "limit": 60,
+      "used": 9,
+      "remaining": 51,
+      "status": "OK"
+    },
+    {
+      "product": "DxH Diluent",
+      "analyzer": "DxH 690T",
+      "limit": 60,
+      "used": 6,
+      "remaining": 54,
+      "status": "OK"
+    },
+    {
+      "product": "M-53LEO(I) LYSE",
+      "analyzer": "MINDRAY BC-5380",
+      "limit": 60,
+      "used": 5,
+      "remaining": 55,
+      "status": "OK"
+    },
+    {
+      "product": "M-53D DILUENT",
+      "analyzer": "MINDRAY BC-5380",
+      "limit": 60,
+      "used": 5,
+      "remaining": 55,
+      "status": "OK"
+    },
+    {
+      "product": "M-53LH LYSE",
+      "analyzer": "MINDRAY BC-5380",
+      "limit": 60,
+      "used": 4,
+      "remaining": 56,
+      "status": "OK"
+    },
+    {
+      "product": "COULTER DxH DIFF PACK",
+      "analyzer": "DxH 690T",
+      "limit": 60,
+      "used": 2,
+      "remaining": 58,
+      "status": "OK"
+    },
+    {
+      "product": "COULTER DxH CELL LYSE",
+      "analyzer": "DxH 690T",
+      "limit": 60,
+      "used": 2,
+      "remaining": 58,
+      "status": "OK"
+    },
+    {
+      "product": "APTT SP",
+      "analyzer": "ACL ELITE PRO",
+      "limit": 150,
+      "used": 23,
+      "remaining": 127,
+      "status": "OK"
+    }
+  ]
 }
