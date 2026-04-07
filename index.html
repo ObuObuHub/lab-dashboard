@@ -110,7 +110,7 @@
   .clock-card {
     background: var(--white);
     border-radius: 14px;
-    padding: 20px 32px 16px;
+    padding: 28px 32px 22px;
     text-align: center;
     flex-shrink: 0;
     border: 1px solid var(--border);
@@ -131,13 +131,13 @@
   }
 
   .clock-hm {
-    font-size: 100px; font-weight: 300;
+    font-size: 130px; font-weight: 300;
     letter-spacing: -3px; color: var(--text-primary);
     font-variant-numeric: tabular-nums;
   }
 
   .clock-sep {
-    font-size: 80px; font-weight: 300;
+    font-size: 110px; font-weight: 300;
     color: var(--teal); margin: 0 2px;
     animation: blink-colon 2s step-end infinite;
   }
@@ -146,17 +146,17 @@
 
   .clock-sec {
     font-family: 'Azeret Mono', monospace;
-    font-size: 22px; font-weight: 400;
+    font-size: 30px; font-weight: 400;
     color: var(--text-tertiary);
     margin-left: 8px; align-self: flex-start;
-    margin-top: 14px; min-width: 2ch;
+    margin-top: 20px; min-width: 2ch;
   }
 
   .clock-date {
-    font-size: 13px; font-weight: 400;
+    font-size: 18px; font-weight: 400;
     color: var(--text-secondary);
-    letter-spacing: 4px; text-transform: uppercase;
-    margin-top: 6px;
+    letter-spacing: 5px; text-transform: uppercase;
+    margin-top: 10px;
   }
 
   /* === REPORT === */
@@ -267,18 +267,18 @@
   /* === RESPONSIVE === */
   @media (orientation: landscape) {
     .shell { padding: 8px 20px 4px; gap: 6px; }
-    .clock-card { padding: 10px 32px 8px; border-radius: 10px; }
-    .clock-hm { font-size: 68px; }
-    .clock-sep { font-size: 54px; }
-    .clock-sec { font-size: 17px; margin-top: 8px; }
-    .clock-date { font-size: 11px; margin-top: 3px; }
+    .clock-card { padding: 14px 32px 10px; border-radius: 10px; }
+    .clock-hm { font-size: 90px; }
+    .clock-sep { font-size: 72px; }
+    .clock-sec { font-size: 22px; margin-top: 10px; }
+    .clock-date { font-size: 14px; margin-top: 4px; }
     .row { padding: 7px 12px; }
   }
 
   @media (max-width: 810px) {
-    .clock-hm { font-size: 64px; }
-    .clock-sep { font-size: 50px; }
-    .clock-sec { font-size: 16px; margin-top: 6px; }
+    .clock-hm { font-size: 90px; }
+    .clock-sep { font-size: 70px; }
+    .clock-sec { font-size: 22px; margin-top: 10px; }
   }
 
   .shell > * { animation: fade-up 0.5s ease both; }
