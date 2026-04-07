@@ -13,10 +13,8 @@
   :root {
     --bg: #f5f6f8;
     --white: #ffffff;
-    --card: #ffffff;
     --border: #e4e7ec;
     --border-light: #eef0f4;
-    --divider: #d5d9e2;
     --text-primary: #1a1d26;
     --text-secondary: #4a5068;
     --text-tertiary: #8890a4;
@@ -24,11 +22,18 @@
     --teal: #0d9488;
     --teal-light: #ccfbf1;
     --teal-mid: #5eead4;
-    --teal-dark: #0f766e;
-    --blue: #2563eb;
-    --blue-light: #eff6ff;
-    --red-yt: #dc2626;
-    --red-yt-light: #fef2f2;
+    --green: #16a34a;
+    --green-bg: #f0fdf4;
+    --green-border: #bbf7d0;
+    --yellow: #ca8a04;
+    --yellow-bg: #fefce8;
+    --yellow-border: #fef08a;
+    --red: #dc2626;
+    --red-bg: #fef2f2;
+    --red-border: #fecaca;
+    --orange: #ea580c;
+    --orange-bg: #fff7ed;
+    --orange-border: #fed7aa;
     --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
     --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
     --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
@@ -83,11 +88,7 @@
     box-shadow: 0 2px 8px rgba(13, 148, 136, 0.25);
   }
 
-  .brand-mark svg {
-    width: 16px;
-    height: 16px;
-    fill: #fff;
-  }
+  .brand-mark svg { width: 16px; height: 16px; fill: #fff; }
 
   .brand-text {
     font-weight: 600;
@@ -110,7 +111,7 @@
   .header-status {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 10px;
   }
 
   .status-pill {
@@ -165,7 +166,6 @@
     display: flex;
     align-items: baseline;
     justify-content: center;
-    gap: 0;
     line-height: 1;
   }
 
@@ -210,45 +210,108 @@
     margin-top: 8px;
   }
 
-  /* === SIGIL === */
-  .sigil-frame {
+  /* === REPORT === */
+  .report {
     flex: 1;
-    border-radius: 14px;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid var(--border);
-    background: var(--white);
-    box-shadow: var(--shadow);
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     min-height: 0;
   }
 
-  .sigil-frame iframe { width: 100%; height: 100%; border: none; }
+  .report::-webkit-scrollbar { width: 4px; }
+  .report::-webkit-scrollbar-track { background: transparent; }
+  .report::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
-  .sigil-loader {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
+  .analyzer-card {
+    background: var(--white);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+  }
+
+  .analyzer-header {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 14px;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background: var(--border-light);
+    border-bottom: 1px solid var(--border);
   }
 
-  .sigil-loader-ring {
-    width: 28px;
-    height: 28px;
-    border: 2px solid var(--border);
-    border-top-color: var(--teal);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
+  .analyzer-name {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text-primary);
+    letter-spacing: 0.3px;
   }
 
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  .sigil-loader-text {
-    font-size: 12px;
+  .analyzer-count {
+    font-family: 'Azeret Mono', monospace;
+    font-size: 10px;
     color: var(--text-tertiary);
     letter-spacing: 1px;
+  }
+
+  .product-row {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-bottom: 1px solid var(--border-light);
+    gap: 12px;
+  }
+
+  .product-row:last-child { border-bottom: none; }
+
+  .product-name {
+    flex: 1;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-secondary);
+  }
+
+  .product-count {
+    font-family: 'Azeret Mono', monospace;
+    font-size: 10px;
+    color: var(--text-faint);
+    min-width: 24px;
+    text-align: center;
+  }
+
+  .product-days {
+    font-family: 'Azeret Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    min-width: 64px;
+    text-align: right;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-family: 'Azeret Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  .badge-ok { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+  .badge-atentie { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+  .badge-urgent { background: var(--orange-bg); color: var(--orange); border: 1px solid var(--orange-border); }
+  .badge-expirat { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+
+  .report-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    color: var(--text-tertiary);
+    font-size: 14px;
   }
 
   /* === FOOTER === */
@@ -271,29 +334,28 @@
   /* === RESPONSIVE === */
   @media (orientation: landscape) {
     .shell { padding: 10px 20px 6px; gap: 8px; }
-    .clock-card { padding: 14px 32px 12px; border-radius: 12px; }
-    .clock-hm { font-size: 80px; }
-    .clock-sep { font-size: 64px; }
-    .clock-sec { font-size: 20px; margin-top: 10px; }
-    .clock-date { font-size: 12px; margin-top: 4px; }
-    .sigil-frame { border-radius: 10px; }
-  }
-
-  @media (max-width: 810px) {
+    .clock-card { padding: 12px 32px 10px; border-radius: 12px; }
     .clock-hm { font-size: 72px; }
     .clock-sep { font-size: 56px; }
     .clock-sec { font-size: 18px; margin-top: 8px; }
+    .clock-date { font-size: 11px; margin-top: 4px; }
+    .report { gap: 6px; }
+    .analyzer-header { padding: 8px 14px; }
+    .product-row { padding: 6px 14px; }
+  }
+
+  @media (max-width: 810px) {
+    .clock-hm { font-size: 64px; }
+    .clock-sep { font-size: 50px; }
+    .clock-sec { font-size: 16px; margin-top: 6px; }
   }
 
   /* Entry */
-  .shell > * {
-    animation: fade-up 0.5s ease both;
-  }
+  .shell > * { animation: fade-up 0.5s ease both; }
   .shell > *:nth-child(1) { animation-delay: 0s; }
   .shell > *:nth-child(2) { animation-delay: 0.08s; }
   .shell > *:nth-child(3) { animation-delay: 0.14s; }
   .shell > *:nth-child(4) { animation-delay: 0.2s; }
-  .shell > *:nth-child(5) { animation-delay: 0.26s; }
 
   @keyframes fade-up {
     from { opacity: 0; transform: translateY(8px); }
@@ -314,7 +376,7 @@
       <span class="brand-sub">LAM</span>
     </div>
     <div class="header-status">
-      <div class="status-pill">
+      <div class="status-pill" id="report-gen">
         <span class="status-dot"></span>
         <span id="uptime">UP 0h 00m</span>
       </div>
@@ -332,22 +394,15 @@
     <div class="clock-date" id="dateline"></div>
   </div>
 
-  <!-- SIGIL -->
-  <div class="sigil-frame">
-    <div class="sigil-loader" id="sigil-loader">
-      <div class="sigil-loader-ring"></div>
-      <span class="sigil-loader-text">Se incarca SIGIL...</span>
-    </div>
-    <iframe
-      src="https://docs.google.com/spreadsheets/d/1QnBI6RWz254xVHdaQD83PrBR5taRvGZrEuK1j606ZRg/edit?rm=minimal"
-      onload="document.getElementById('sigil-loader').style.display='none'"
-    ></iframe>
+  <!-- REPORT -->
+  <div class="report" id="report">
+    <div class="report-empty">Se incarca raportul SIGIL...</div>
   </div>
 
   <!-- FOOTER -->
   <div class="footer">
     <span class="footer-item">Spitalul Prof. Dr. Eduard Apetrei</span>
-    <span class="footer-item" id="footer-date"></span>
+    <span class="footer-item" id="gen-date"></span>
   </div>
 </div>
 
@@ -371,7 +426,6 @@
     dateEl.textContent = ZILE[now.getDay()] + ',  ' +
       now.getDate() + ' ' + LUNI[now.getMonth()] + ' ' + now.getFullYear();
   }
-
   updateClock();
   setInterval(updateClock, 1000);
 
@@ -385,6 +439,96 @@
   }
   setInterval(updateUptime, 60000);
   updateUptime();
+
+  // Render report from data.json
+  function badgeClass(status) {
+    if (status === 'OK') return 'badge-ok';
+    if (status === 'ATENTIE') return 'badge-atentie';
+    if (status === 'URGENT') return 'badge-urgent';
+    return 'badge-expirat';
+  }
+
+  function daysLabel(d) {
+    if (d < 0) return Math.abs(d) + 'z exp';
+    return d + 'z';
+  }
+
+  function renderReport(data) {
+    var el = document.getElementById('report');
+    var genEl = document.getElementById('gen-date');
+    genEl.textContent = 'Actualizat: ' + data.generated;
+
+    var html = [];
+    var order = ['DxH 690T', 'MINDRAY BC-5380', 'ACL ELITE PRO', 'Coloranti', 'Grupe+Rh'];
+    var keys = order.filter(function(k) { return data.analyzers[k]; });
+    // Add any remaining
+    Object.keys(data.analyzers).forEach(function(k) {
+      if (keys.indexOf(k) === -1) keys.push(k);
+    });
+
+    keys.forEach(function(az) {
+      var products = data.analyzers[az];
+      var card = document.createElement('div');
+      card.className = 'analyzer-card';
+
+      var hdr = document.createElement('div');
+      hdr.className = 'analyzer-header';
+      var name = document.createElement('span');
+      name.className = 'analyzer-name';
+      name.textContent = az;
+      var cnt = document.createElement('span');
+      cnt.className = 'analyzer-count';
+      cnt.textContent = products.length + ' produse';
+      hdr.appendChild(name);
+      hdr.appendChild(cnt);
+      card.appendChild(hdr);
+
+      products.forEach(function(p) {
+        var row = document.createElement('div');
+        row.className = 'product-row';
+
+        var pname = document.createElement('span');
+        pname.className = 'product-name';
+        pname.textContent = p.product;
+
+        var pcount = document.createElement('span');
+        pcount.className = 'product-count';
+        pcount.textContent = 'x' + p.count;
+
+        var badge = document.createElement('span');
+        badge.className = 'badge ' + badgeClass(p.status);
+        badge.textContent = daysLabel(p.days);
+
+        row.appendChild(pname);
+        row.appendChild(pcount);
+        row.appendChild(badge);
+        card.appendChild(row);
+      });
+
+      el.appendChild(card);
+    });
+  }
+
+  function loadReport() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'data.json?t=' + Date.now(), true);
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        var data = JSON.parse(xhr.responseText);
+        var el = document.getElementById('report');
+        el.textContent = '';
+        renderReport(data);
+      }
+    };
+    xhr.onerror = function() {
+      document.getElementById('report').textContent = 'Eroare la incarcarea raportului.';
+    };
+    xhr.send();
+  }
+
+  loadReport();
+  // Refresh report every 30 minutes
+  setInterval(loadReport, 1800000);
 
   var wakeLock = null;
   function requestWakeLock() {
