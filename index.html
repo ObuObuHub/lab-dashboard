@@ -8,34 +8,38 @@
 <meta name="apple-mobile-web-app-title" content="Hematologie">
 <title>Hematologie</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Azeret+Mono:wght@300;400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap');
 
   :root {
-    --bg: #f5f6f8;
+    --bg: #f0f2f5;
     --white: #ffffff;
-    --border: #e4e7ec;
-    --border-light: #eef0f4;
-    --text-primary: #1a1d26;
-    --text-secondary: #4a5068;
-    --text-tertiary: #8890a4;
-    --text-faint: #b4b9c8;
-    --teal: #0d9488;
-    --teal-light: #ccfbf1;
-    --teal-mid: #5eead4;
-    --green: #16a34a;
-    --green-bg: #f0fdf4;
-    --green-border: #bbf7d0;
-    --yellow: #ca8a04;
-    --yellow-bg: #fefce8;
-    --yellow-border: #fef08a;
-    --red: #dc2626;
-    --red-bg: #fef2f2;
-    --red-border: #fecaca;
-    --orange: #ea580c;
-    --orange-bg: #fff7ed;
-    --orange-border: #fed7aa;
-    --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
-    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --glass: rgba(255,255,255,0.85);
+    --border: #e0e4ea;
+    --border-subtle: #eaecf0;
+    --text-hero: #0f1419;
+    --text-primary: #1d2939;
+    --text-secondary: #475467;
+    --text-tertiary: #98a2b3;
+    --text-ghost: #c0c7d2;
+    --accent: #0d9488;
+    --accent-light: #99f6e4;
+    --accent-wash: #f0fdfa;
+    --accent-deep: #0f766e;
+    --green: #12b76a;
+    --green-bg: #ecfdf3;
+    --green-border: #a6f4c5;
+    --yellow: #f79009;
+    --yellow-bg: #fffaeb;
+    --yellow-border: #fedf89;
+    --orange: #ef6820;
+    --orange-bg: #fff4ed;
+    --orange-border: #fddcab;
+    --red: #f04438;
+    --red-bg: #fef3f2;
+    --red-border: #fecdca;
+    --ring-track: #e8ecf1;
+    --shadow-clock: 0 8px 40px rgba(13,148,136,0.08), 0 1px 3px rgba(0,0,0,0.04);
+    --shadow-card: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -43,7 +47,7 @@
   html, body {
     height: 100%;
     overflow: hidden;
-    font-family: 'DM Sans', -apple-system, sans-serif;
+    font-family: 'Figtree', -apple-system, sans-serif;
     background: var(--bg);
     color: var(--text-primary);
     -webkit-user-select: none;
@@ -52,13 +56,24 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  /* Subtle dot grid texture */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: radial-gradient(circle, #d5dae0 0.5px, transparent 0.5px);
+    background-size: 24px 24px;
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0;
+  }
+
   .shell {
+    position: relative; z-index: 1;
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    height: 100dvh;
-    padding: 14px 20px 8px;
-    gap: 10px;
+    height: 100vh; height: 100dvh;
+    padding: 16px 24px 10px;
+    gap: 14px;
   }
 
   /* === HEADER === */
@@ -69,263 +84,415 @@
     flex-shrink: 0;
   }
 
-  .header-brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  .brand {
+    display: flex; align-items: center; gap: 12px;
   }
 
-  .brand-mark {
-    width: 26px; height: 26px;
-    background: var(--teal);
-    border-radius: 7px;
+  .brand-icon {
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-deep));
+    border-radius: 9px;
     display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 2px 8px rgba(13,148,136,0.25);
+    box-shadow: 0 2px 10px rgba(13,148,136,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
   }
 
-  .brand-mark svg { width: 14px; height: 14px; fill: #fff; }
+  .brand-icon svg { width: 18px; height: 18px; fill: #fff; }
 
-  .brand-text { font-weight: 600; font-size: 15px; }
+  .brand-label {
+    font-weight: 700; font-size: 16px;
+    color: var(--text-hero);
+    letter-spacing: -0.2px;
+  }
 
-  .status-pill {
+  .header-pills {
+    display: flex; gap: 8px;
+  }
+
+  .pill {
     display: flex; align-items: center; gap: 6px;
-    font-family: 'Azeret Mono', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 10px; color: var(--text-tertiary);
-    letter-spacing: 1px;
-    padding: 4px 10px;
+    letter-spacing: 0.5px;
+    padding: 5px 12px;
     background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 20px;
+    border: 1px solid var(--border-subtle);
+    border-radius: 100px;
+    backdrop-filter: blur(8px);
   }
 
-  .status-dot {
+  .pill-dot {
     width: 6px; height: 6px;
-    background: var(--teal); border-radius: 50%;
-    animation: pulse-dot 3s ease-in-out infinite;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 6px rgba(13,148,136,0.4);
+    animation: glow 2.5s ease-in-out infinite;
   }
 
-  @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  @keyframes glow {
+    0%,100% { box-shadow: 0 0 6px rgba(13,148,136,0.4); }
+    50% { box-shadow: 0 0 12px rgba(13,148,136,0.6); }
+  }
 
   /* === CLOCK === */
-  .clock-card {
+  .clock-panel {
     background: var(--white);
-    border-radius: 14px;
-    padding: 28px 32px 22px;
+    border-radius: 20px;
+    padding: 32px 40px 26px;
     text-align: center;
     flex-shrink: 0;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-    position: relative; overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-clock);
+    position: relative;
+    overflow: hidden;
   }
 
-  .clock-card::before {
+  /* Accent gradient bar */
+  .clock-panel::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--teal), var(--teal-mid), var(--teal));
+    height: 4px;
+    background: linear-gradient(90deg,
+      var(--accent-deep) 0%,
+      var(--accent) 30%,
+      var(--accent-light) 50%,
+      var(--accent) 70%,
+      var(--accent-deep) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 6s ease-in-out infinite;
   }
 
-  .clock-face {
-    display: flex; align-items: baseline; justify-content: center; line-height: 1;
+  @keyframes shimmer {
+    0%,100% { background-position: 200% 0; }
+    50% { background-position: 0% 0; }
   }
 
-  .clock-hm {
-    font-size: 130px; font-weight: 300;
-    letter-spacing: -3px; color: var(--text-primary);
+  /* Subtle radial glow behind clock */
+  .clock-panel::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px; height: 200px;
+    background: radial-gradient(ellipse, rgba(13,148,136,0.03) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .clock-time {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    line-height: 1;
+    position: relative; z-index: 1;
+  }
+
+  .clock-h, .clock-m {
+    font-size: 140px;
+    font-weight: 300;
+    letter-spacing: -6px;
+    color: var(--text-hero);
     font-variant-numeric: tabular-nums;
+    transition: opacity 0.15s;
   }
 
-  .clock-sep {
-    font-size: 110px; font-weight: 300;
-    color: var(--teal); margin: 0 2px;
-    animation: blink-colon 2s step-end infinite;
+  .clock-colon {
+    font-size: 120px;
+    font-weight: 200;
+    color: var(--accent);
+    margin: 0 -2px;
+    animation: blink 2s step-end infinite;
+    opacity: 0.8;
   }
 
-  @keyframes blink-colon { 0%,100%{opacity:1} 50%{opacity:0.15} }
+  @keyframes blink { 0%,100%{opacity:0.8} 50%{opacity:0.1} }
 
-  .clock-sec {
-    font-family: 'Azeret Mono', monospace;
-    font-size: 30px; font-weight: 400;
+  .clock-s {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 28px;
+    font-weight: 400;
     color: var(--text-tertiary);
-    margin-left: 8px; align-self: flex-start;
-    margin-top: 20px; min-width: 2ch;
+    margin-left: 10px;
+    align-self: flex-start;
+    margin-top: 22px;
+    min-width: 2.2ch;
+    position: relative; z-index: 1;
   }
 
   .clock-date {
-    font-size: 18px; font-weight: 400;
+    font-size: 15px;
+    font-weight: 500;
     color: var(--text-secondary);
-    letter-spacing: 5px; text-transform: uppercase;
+    letter-spacing: 6px;
+    text-transform: uppercase;
     margin-top: 10px;
+    position: relative; z-index: 1;
   }
 
-  /* === REPORT === */
-  .report {
+  /* === SECTIONS === */
+  .sections {
     flex: 1;
     overflow-y: auto; overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
     display: flex; flex-direction: column;
-    gap: 10px; min-height: 0;
+    gap: 16px;
+    min-height: 0;
+    padding-bottom: 4px;
   }
 
-  .report::-webkit-scrollbar { width: 4px; }
-  .report::-webkit-scrollbar-track { background: transparent; }
-  .report::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  .sections::-webkit-scrollbar { width: 3px; }
+  .sections::-webkit-scrollbar-track { background: transparent; }
+  .sections::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
-  .section-title {
-    font-size: 11px;
-    font-weight: 600;
+  /* Section header */
+  .sec-head {
+    display: flex; align-items: center; gap: 8px;
+    padding: 0 2px;
+  }
+
+  .sec-line {
+    flex: 1; height: 1px;
+    background: linear-gradient(90deg, var(--border), transparent);
+  }
+
+  .sec-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
     color: var(--text-tertiary);
-    letter-spacing: 2px;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
-    padding: 4px 4px 0;
+    white-space: nowrap;
   }
 
-  .card {
+  /* Gauge cards for on-board */
+  .gauges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .gauge-card {
+    flex: 1;
+    min-width: 140px;
     background: var(--white);
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-sm);
+    border-radius: 16px;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-card);
+    padding: 16px 12px 14px;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 8px;
+    position: relative;
     overflow: hidden;
   }
 
-  .row {
-    display: flex; align-items: center;
-    padding: 9px 14px;
-    border-bottom: 1px solid var(--border-light);
-    gap: 8px;
+  .gauge-ring {
+    position: relative;
+    width: 72px; height: 72px;
   }
 
-  .row:last-child { border-bottom: none; }
+  .gauge-ring svg {
+    width: 72px; height: 72px;
+    transform: rotate(-90deg);
+  }
 
-  .row-az {
-    font-family: 'Azeret Mono', monospace;
+  .gauge-ring .track {
+    fill: none;
+    stroke: var(--ring-track);
+    stroke-width: 5;
+  }
+
+  .gauge-ring .fill {
+    fill: none;
+    stroke-width: 5;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s ease, stroke 0.5s;
+  }
+
+  .gauge-value {
+    position: absolute;
+    inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-hero);
+  }
+
+  .gauge-value small {
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--text-tertiary);
+  }
+
+  .gauge-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .gauge-sub {
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 9px;
-    color: var(--text-faint);
+    color: var(--text-ghost);
     letter-spacing: 0.5px;
-    min-width: 90px;
+  }
+
+  /* Expiry list */
+  .exp-card {
+    background: var(--white);
+    border-radius: 14px;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+
+  .exp-row {
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    gap: 10px;
+    border-bottom: 1px solid var(--border-subtle);
+    transition: background 0.2s;
+  }
+
+  .exp-row:last-child { border-bottom: none; }
+
+  .exp-az {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: var(--text-ghost);
+    letter-spacing: 0.3px;
+    min-width: 80px;
     flex-shrink: 0;
   }
 
-  .row-product {
+  .exp-name {
     flex: 1;
     font-size: 13px;
-    font-weight: 400;
+    font-weight: 500;
     color: var(--text-secondary);
   }
 
-  .row-detail {
-    font-family: 'Azeret Mono', monospace;
+  .exp-qty {
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 9px;
-    color: var(--text-faint);
-    min-width: 50px;
-    text-align: right;
+    color: var(--text-ghost);
     flex-shrink: 0;
   }
 
-  .badge {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 6px;
-    font-family: 'Azeret Mono', monospace;
-    font-size: 10px; font-weight: 500;
-    letter-spacing: 0.5px;
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
     min-width: 48px;
-    text-align: center;
+    justify-content: center;
     flex-shrink: 0;
   }
 
-  .badge-ok { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
-  .badge-atentie { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
-  .badge-urgent { background: var(--orange-bg); color: var(--orange); border: 1px solid var(--orange-border); }
-  .badge-expirat { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
-
-  .empty-msg {
-    padding: 16px;
-    text-align: center;
-    color: var(--text-tertiary);
-    font-size: 13px;
-  }
+  .tag-ok { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+  .tag-atentie { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+  .tag-urgent { background: var(--orange-bg); color: var(--orange); border: 1px solid var(--orange-border); }
+  .tag-expirat { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
 
   /* === FOOTER === */
-  .footer {
+  .foot {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2px 4px;
+    padding: 0 4px;
     flex-shrink: 0;
   }
 
-  .footer-item {
-    font-family: 'Azeret Mono', monospace;
+  .foot span {
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 9px;
-    color: var(--text-faint);
+    color: var(--text-ghost);
     letter-spacing: 1.5px;
     text-transform: uppercase;
   }
 
   /* === RESPONSIVE === */
   @media (orientation: landscape) {
-    .shell { padding: 8px 20px 4px; gap: 6px; }
-    .clock-card { padding: 14px 32px 10px; border-radius: 10px; }
-    .clock-hm { font-size: 90px; }
-    .clock-sep { font-size: 72px; }
-    .clock-sec { font-size: 22px; margin-top: 10px; }
-    .clock-date { font-size: 14px; margin-top: 4px; }
-    .row { padding: 7px 12px; }
+    .shell { padding: 10px 24px 6px; gap: 8px; }
+    .clock-panel { padding: 16px 40px 12px; border-radius: 16px; }
+    .clock-h, .clock-m { font-size: 100px; letter-spacing: -4px; }
+    .clock-colon { font-size: 84px; }
+    .clock-s { font-size: 22px; margin-top: 14px; }
+    .clock-date { font-size: 12px; margin-top: 6px; letter-spacing: 5px; }
+    .gauge-ring { width: 60px; height: 60px; }
+    .gauge-ring svg { width: 60px; height: 60px; }
+    .gauge-value { font-size: 15px; }
+    .gauge-card { padding: 12px 10px 10px; }
   }
 
   @media (max-width: 810px) {
-    .clock-hm { font-size: 90px; }
-    .clock-sep { font-size: 70px; }
-    .clock-sec { font-size: 22px; margin-top: 10px; }
+    .clock-h, .clock-m { font-size: 100px; }
+    .clock-colon { font-size: 80px; }
+    .clock-s { font-size: 22px; margin-top: 14px; }
   }
 
-  .shell > * { animation: fade-up 0.5s ease both; }
+  /* Entry choreography */
+  .shell > * {
+    animation: rise 0.7s cubic-bezier(0.16,1,0.3,1) both;
+  }
   .shell > *:nth-child(1) { animation-delay: 0s; }
-  .shell > *:nth-child(2) { animation-delay: 0.08s; }
-  .shell > *:nth-child(3) { animation-delay: 0.14s; }
-  .shell > *:nth-child(4) { animation-delay: 0.2s; }
+  .shell > *:nth-child(2) { animation-delay: 0.12s; }
+  .shell > *:nth-child(3) { animation-delay: 0.22s; }
+  .shell > *:nth-child(4) { animation-delay: 0.32s; }
 
-  @keyframes fade-up {
-    from { opacity:0; transform:translateY(8px); }
-    to { opacity:1; transform:translateY(0); }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
   }
 </style>
 </head>
 <body>
 
 <div class="shell">
+  <!-- HEADER -->
   <div class="header">
-    <div class="header-brand">
-      <div class="brand-mark">
-        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+    <div class="brand">
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
       </div>
-      <span class="brand-text">Hematologie</span>
+      <span class="brand-label">Hematologie</span>
     </div>
-    <div class="status-pill">
-      <span class="status-dot"></span>
-      <span id="uptime">UP 0h 00m</span>
+    <div class="header-pills">
+      <div class="pill">
+        <span class="pill-dot"></span>
+        <span id="uptime">UP 0h 00m</span>
+      </div>
     </div>
   </div>
 
-  <div class="clock-card">
-    <div class="clock-face">
-      <span class="clock-hm" id="hr">00</span>
-      <span class="clock-sep">:</span>
-      <span class="clock-hm" id="mn">00</span>
-      <span class="clock-sec" id="sc">00</span>
+  <!-- CLOCK -->
+  <div class="clock-panel">
+    <div class="clock-time">
+      <span class="clock-h" id="hr">00</span>
+      <span class="clock-colon">:</span>
+      <span class="clock-m" id="mn">00</span>
+      <span class="clock-s" id="sc">00</span>
     </div>
     <div class="clock-date" id="dateline"></div>
   </div>
 
-  <div class="report" id="report">
-    <div class="empty-msg">Se incarca...</div>
+  <!-- SECTIONS -->
+  <div class="sections" id="report">
+    <div style="text-align:center;color:var(--text-tertiary);padding:24px;font-size:13px;">Se incarca...</div>
   </div>
 
-  <div class="footer">
-    <span class="footer-item">Hematologie</span>
-    <span class="footer-item" id="gen-date"></span>
+  <!-- FOOTER -->
+  <div class="foot">
+    <span>Hematologie</span>
+    <span id="gen-date"></span>
   </div>
 </div>
 
@@ -363,36 +530,75 @@
   setInterval(updateUptime, 60000);
   updateUptime();
 
-  function badgeClass(s) {
-    return s === 'OK' ? 'badge-ok' : s === 'ATENTIE' ? 'badge-atentie' :
-           s === 'URGENT' ? 'badge-urgent' : 'badge-expirat';
+  function statusColor(s) {
+    return s === 'OK' ? 'var(--green)' : s === 'ATENTIE' ? 'var(--yellow)' :
+           s === 'URGENT' ? 'var(--orange)' : 'var(--red)';
+  }
+  function tagClass(s) {
+    return 'tag tag-' + (s === 'OK' ? 'ok' : s === 'ATENTIE' ? 'atentie' :
+           s === 'URGENT' ? 'urgent' : 'expirat');
   }
 
-  function makeRow(az, product, detail, days, status) {
-    var row = document.createElement('div');
-    row.className = 'row';
+  function makeGauge(item) {
+    var card = document.createElement('div');
+    card.className = 'gauge-card';
 
-    var azEl = document.createElement('span');
-    azEl.className = 'row-az';
-    azEl.textContent = az;
+    var pct = Math.max(0, Math.min(1, item.remaining / item.limit));
+    var R = 30;
+    var C = 2 * Math.PI * R;
+    var offset = C * (1 - pct);
+    var color = statusColor(item.status);
 
-    var prodEl = document.createElement('span');
-    prodEl.className = 'row-product';
-    prodEl.textContent = product;
+    var ring = document.createElement('div');
+    ring.className = 'gauge-ring';
 
-    var detEl = document.createElement('span');
-    detEl.className = 'row-detail';
-    detEl.textContent = detail;
+    var ns = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('viewBox', '0 0 72 72');
 
-    var badge = document.createElement('span');
-    badge.className = 'badge ' + badgeClass(status);
-    badge.textContent = days;
+    var track = document.createElementNS(ns, 'circle');
+    track.setAttribute('class', 'track');
+    track.setAttribute('cx', '36'); track.setAttribute('cy', '36'); track.setAttribute('r', String(R));
 
-    row.appendChild(azEl);
-    row.appendChild(prodEl);
-    row.appendChild(detEl);
-    row.appendChild(badge);
-    return row;
+    var fill = document.createElementNS(ns, 'circle');
+    fill.setAttribute('class', 'fill');
+    fill.setAttribute('cx', '36'); fill.setAttribute('cy', '36'); fill.setAttribute('r', String(R));
+    fill.setAttribute('stroke', color);
+    fill.setAttribute('stroke-dasharray', String(C));
+    fill.setAttribute('stroke-dashoffset', String(C));
+
+    svg.appendChild(track);
+    svg.appendChild(fill);
+    ring.appendChild(svg);
+
+    var val = document.createElement('div');
+    val.className = 'gauge-value';
+    var num = document.createElement('span');
+    num.textContent = item.remaining;
+    var unit = document.createElement('small');
+    unit.textContent = 'zl';
+    val.appendChild(num);
+    val.appendChild(unit);
+    ring.appendChild(val);
+
+    var name = document.createElement('div');
+    name.className = 'gauge-name';
+    name.textContent = item.product;
+
+    var sub = document.createElement('div');
+    sub.className = 'gauge-sub';
+    sub.textContent = item.used + '/' + item.limit + ' zile';
+
+    card.appendChild(ring);
+    card.appendChild(name);
+    card.appendChild(sub);
+
+    // Animate after render
+    setTimeout(function() {
+      fill.setAttribute('stroke-dashoffset', String(offset));
+    }, 300);
+
+    return card;
   }
 
   function renderReport(data) {
@@ -400,45 +606,67 @@
     el.textContent = '';
     document.getElementById('gen-date').textContent = 'Actualizat: ' + data.generated;
 
-    // Section 1: On-board (controls + reagents la bord)
-    var title1 = document.createElement('div');
-    title1.className = 'section-title';
-    title1.textContent = 'Stabilitate la bord';
-    el.appendChild(title1);
+    // Section 1: On-board gauges
+    var h1 = document.createElement('div');
+    h1.className = 'sec-head';
+    var l1 = document.createElement('span');
+    l1.className = 'sec-label';
+    l1.textContent = 'Stabilitate la bord';
+    var line1 = document.createElement('div');
+    line1.className = 'sec-line';
+    h1.appendChild(l1);
+    h1.appendChild(line1);
+    el.appendChild(h1);
 
-    var card1 = document.createElement('div');
-    card1.className = 'card';
-    if (data.onboard.length === 0) {
-      var em = document.createElement('div');
-      em.className = 'empty-msg';
-      em.textContent = 'Niciun produs la bord.';
-      card1.appendChild(em);
-    } else {
-      data.onboard.forEach(function(item) {
-        var detail = item.used + '/' + item.limit + ' zl';
-        var label = item.remaining + 'zl';
-        if (item.remaining < 0) label = Math.abs(item.remaining) + 'zl dep';
-        card1.appendChild(makeRow(item.analyzer, item.product, detail, label, item.status));
-      });
-    }
-    el.appendChild(card1);
+    var gauges = document.createElement('div');
+    gauges.className = 'gauges';
+    data.onboard.forEach(function(item) {
+      gauges.appendChild(makeGauge(item));
+    });
+    el.appendChild(gauges);
 
-    // Section 2: Expiring within 90 days
+    // Section 2: Expiry list
     if (data.expiring.length > 0) {
-      var title2 = document.createElement('div');
-      title2.className = 'section-title';
-      title2.textContent = 'Expira in < 90 zile';
-      el.appendChild(title2);
+      var h2 = document.createElement('div');
+      h2.className = 'sec-head';
+      var l2 = document.createElement('span');
+      l2.className = 'sec-label';
+      l2.textContent = 'Expira in < 90 zile';
+      var line2 = document.createElement('div');
+      line2.className = 'sec-line';
+      h2.appendChild(l2);
+      h2.appendChild(line2);
+      el.appendChild(h2);
 
-      var card2 = document.createElement('div');
-      card2.className = 'card';
+      var card = document.createElement('div');
+      card.className = 'exp-card';
       data.expiring.forEach(function(item) {
-        var detail = 'x' + item.count;
-        var label = item.days + 'z';
-        if (item.days < 0) label = Math.abs(item.days) + 'z exp';
-        card2.appendChild(makeRow(item.analyzer, item.product, detail, label, item.status));
+        var row = document.createElement('div');
+        row.className = 'exp-row';
+
+        var az = document.createElement('span');
+        az.className = 'exp-az';
+        az.textContent = item.analyzer;
+
+        var nm = document.createElement('span');
+        nm.className = 'exp-name';
+        nm.textContent = item.product;
+
+        var qty = document.createElement('span');
+        qty.className = 'exp-qty';
+        qty.textContent = 'x' + item.count;
+
+        var tag = document.createElement('span');
+        tag.className = tagClass(item.status);
+        tag.textContent = item.days < 0 ? Math.abs(item.days) + 'z exp' : item.days + 'z';
+
+        row.appendChild(az);
+        row.appendChild(nm);
+        row.appendChild(qty);
+        row.appendChild(tag);
+        card.appendChild(row);
       });
-      el.appendChild(card2);
+      el.appendChild(card);
     }
   }
 
