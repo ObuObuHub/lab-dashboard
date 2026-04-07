@@ -4,32 +4,34 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="LAB">
 <title>LAB</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&family=Azeret+Mono:wght@300;400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Azeret+Mono:wght@300;400;500&display=swap');
 
   :root {
-    --void: #06070a;
-    --deep: #0c0e14;
-    --panel: #11131a;
-    --panel-edge: #1a1d28;
-    --ridge: #252835;
-    --ghost: #3a3f52;
-    --muted: #5c6178;
-    --soft: #8b90a5;
-    --text: #c8cbd8;
-    --bright: #e8eaf2;
-    --white: #f4f5f9;
-    --cyan: #22d3ee;
-    --cyan-dim: #0e7490;
-    --cyan-glow: rgba(34, 211, 238, 0.08);
-    --cyan-flare: rgba(34, 211, 238, 0.25);
-    --amber: #fbbf24;
-    --amber-dim: #92400e;
-    --red-yt: #e83030;
-    --red-yt-glow: rgba(232, 48, 48, 0.12);
+    --bg: #f5f6f8;
+    --white: #ffffff;
+    --card: #ffffff;
+    --border: #e4e7ec;
+    --border-light: #eef0f4;
+    --divider: #d5d9e2;
+    --text-primary: #1a1d26;
+    --text-secondary: #4a5068;
+    --text-tertiary: #8890a4;
+    --text-faint: #b4b9c8;
+    --teal: #0d9488;
+    --teal-light: #ccfbf1;
+    --teal-mid: #5eead4;
+    --teal-dark: #0f766e;
+    --blue: #2563eb;
+    --blue-light: #eff6ff;
+    --red-yt: #dc2626;
+    --red-yt-light: #fef2f2;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -37,62 +39,31 @@
   html, body {
     height: 100%;
     overflow: hidden;
-    font-family: 'Outfit', sans-serif;
-    background: var(--void);
-    color: var(--text);
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
     -webkit-user-select: none;
     user-select: none;
     -webkit-touch-callout: none;
     -webkit-font-smoothing: antialiased;
   }
 
-  /* === LAYOUT === */
   .shell {
     display: flex;
     flex-direction: column;
     height: 100vh;
     height: 100dvh;
-    padding: 16px 20px 8px;
+    padding: 16px 20px 10px;
     gap: 12px;
-    position: relative;
-    overflow: hidden;
   }
 
-  /* Subtle grid pattern overlay */
-  .shell::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(var(--panel-edge) 1px, transparent 1px),
-      linear-gradient(90deg, var(--panel-edge) 1px, transparent 1px);
-    background-size: 60px 60px;
-    opacity: 0.15;
-    pointer-events: none;
-  }
-
-  /* Top horizon glow */
-  .shell::after {
-    content: '';
-    position: absolute;
-    top: -80px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    height: 160px;
-    background: radial-gradient(ellipse, var(--cyan-glow) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  /* === HEADER BAR === */
+  /* === HEADER === */
   .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-shrink: 0;
     padding: 0 4px;
-    position: relative;
-    z-index: 2;
   }
 
   .header-brand {
@@ -102,112 +73,148 @@
   }
 
   .brand-mark {
-    width: 8px;
-    height: 8px;
-    background: var(--cyan);
+    width: 28px;
+    height: 28px;
+    background: var(--teal);
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(13, 148, 136, 0.25);
+  }
+
+  .brand-mark svg {
+    width: 16px;
+    height: 16px;
+    fill: #fff;
+  }
+
+  .brand-text {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text-primary);
+    letter-spacing: 0.5px;
+  }
+
+  .brand-sub {
+    font-family: 'Azeret Mono', monospace;
+    font-size: 10px;
+    color: var(--text-tertiary);
+    letter-spacing: 1px;
+    margin-left: 8px;
+    padding: 2px 8px;
+    background: var(--border-light);
+    border-radius: 4px;
+  }
+
+  .header-status {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .status-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Azeret Mono', monospace;
+    font-size: 10px;
+    color: var(--text-tertiary);
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--teal);
     border-radius: 50%;
-    box-shadow: 0 0 8px var(--cyan-flare), 0 0 20px var(--cyan-glow);
     animation: pulse-dot 3s ease-in-out infinite;
   }
 
   @keyframes pulse-dot {
-    0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--cyan-flare), 0 0 20px var(--cyan-glow); }
-    50% { opacity: 0.6; box-shadow: 0 0 4px var(--cyan-glow); }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
   }
 
-  .brand-text {
-    font-family: 'Azeret Mono', monospace;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 4px;
-    color: var(--muted);
-    text-transform: uppercase;
-  }
-
-  .header-meta {
-    font-family: 'Azeret Mono', monospace;
-    font-size: 10px;
-    color: var(--ghost);
-    letter-spacing: 2px;
-  }
-
-  /* === CLOCK REGION === */
-  .clock-region {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  /* === CLOCK === */
+  .clock-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 24px 32px 20px;
+    text-align: center;
     flex-shrink: 0;
-    padding: 8px 0 4px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
     position: relative;
-    z-index: 2;
+    overflow: hidden;
+  }
+
+  .clock-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--teal), var(--teal-mid), var(--teal));
   }
 
   .clock-face {
     display: flex;
     align-items: baseline;
+    justify-content: center;
     gap: 0;
     line-height: 1;
   }
 
   .clock-hm {
-    font-size: 120px;
-    font-weight: 200;
-    letter-spacing: -2px;
-    color: var(--white);
+    font-size: 110px;
+    font-weight: 300;
+    letter-spacing: -3px;
+    color: var(--text-primary);
     font-variant-numeric: tabular-nums;
   }
 
   .clock-sep {
-    font-size: 100px;
-    font-weight: 200;
-    color: var(--cyan);
-    animation: blink-colon 2s step-end infinite;
+    font-size: 90px;
+    font-weight: 300;
+    color: var(--teal);
     margin: 0 2px;
+    animation: blink-colon 2s step-end infinite;
   }
 
   @keyframes blink-colon {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.2; }
+    50% { opacity: 0.15; }
   }
 
   .clock-sec {
     font-family: 'Azeret Mono', monospace;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 400;
-    color: var(--cyan-dim);
+    color: var(--text-tertiary);
     margin-left: 8px;
     align-self: flex-start;
-    margin-top: 18px;
+    margin-top: 16px;
     min-width: 2ch;
   }
 
   .clock-date {
-    font-size: 15px;
-    font-weight: 300;
-    color: var(--soft);
-    letter-spacing: 6px;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    letter-spacing: 4px;
     text-transform: uppercase;
-    margin-top: 6px;
-  }
-
-  /* Decorative line under clock */
-  .clock-rule {
-    width: 200px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--ridge), var(--cyan-dim), var(--ridge), transparent);
-    margin-top: 14px;
-    opacity: 0.5;
+    margin-top: 8px;
   }
 
   /* === NAVIGATION === */
   .nav-strip {
     display: flex;
-    gap: 2px;
+    gap: 6px;
     flex-shrink: 0;
-    padding: 0 2px;
-    position: relative;
-    z-index: 2;
   }
 
   .nav-btn {
@@ -216,67 +223,47 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 11px 16px;
-    background: var(--panel);
-    border: 1px solid var(--panel-edge);
-    border-bottom: none;
-    border-radius: 8px 8px 0 0;
-    color: var(--muted);
-    font-family: 'Azeret Mono', monospace;
-    font-size: 11px;
-    font-weight: 400;
+    padding: 12px 16px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text-tertiary);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s ease;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .nav-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: transparent;
-    transition: background 0.3s ease;
-  }
-
-  .nav-btn.active {
-    background: var(--deep);
-    color: var(--bright);
-    border-color: var(--ridge);
-  }
-
-  .nav-btn.active::before {
-    background: var(--cyan);
-    box-shadow: 0 0 12px var(--cyan-flare);
-  }
-
-  .nav-btn.active[data-tab="youtube"]::before {
-    background: var(--red-yt);
-    box-shadow: 0 0 12px var(--red-yt-glow);
+    transition: all 0.25s ease;
+    letter-spacing: 0.5px;
+    box-shadow: var(--shadow-sm);
   }
 
   .nav-btn svg {
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
     fill: currentColor;
     flex-shrink: 0;
+  }
+
+  .nav-btn.active {
+    background: var(--text-primary);
+    color: #fff;
+    border-color: var(--text-primary);
+    box-shadow: var(--shadow-md);
+  }
+
+  .nav-btn.active svg {
+    fill: #fff;
   }
 
   /* === VIEWPORT === */
   .viewport {
     flex: 1;
-    border-radius: 0 0 10px 10px;
+    border-radius: 14px;
     overflow: hidden;
     position: relative;
-    border: 1px solid var(--panel-edge);
-    border-top: none;
-    background: var(--deep);
-    z-index: 2;
+    border: 1px solid var(--border);
+    background: var(--white);
+    box-shadow: var(--shadow);
     min-height: 0;
   }
 
@@ -286,7 +273,7 @@
     height: 100%;
     position: absolute;
     top: 0; left: 0;
-    animation: view-in 0.4s ease;
+    animation: view-in 0.35s ease;
   }
 
   .view.active {
@@ -297,107 +284,72 @@
   }
 
   @keyframes view-in {
-    from { opacity: 0; transform: translateY(6px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
   }
 
   /* === YOUTUBE MUSIC VIEW === */
   .yt-view {
-    gap: 28px;
+    gap: 24px;
     padding: 32px;
-    position: relative;
   }
 
-  .yt-disc {
-    width: 100px;
-    height: 100px;
+  .yt-icon-wrap {
+    width: 88px;
+    height: 88px;
     border-radius: 50%;
-    border: 2px solid var(--ridge);
+    background: var(--red-yt-light);
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    background: radial-gradient(circle at 30% 30%, var(--panel), var(--void));
+    border: 2px solid #fecaca;
   }
 
-  .yt-disc::before {
-    content: '';
-    position: absolute;
-    inset: 8px;
-    border-radius: 50%;
-    border: 1px solid var(--ghost);
-    opacity: 0.3;
-  }
-
-  .yt-disc::after {
-    content: '';
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--red-yt);
-    box-shadow: 0 0 16px rgba(232, 48, 48, 0.4);
-  }
-
-  .yt-disc svg {
-    width: 32px;
-    height: 32px;
-    fill: var(--soft);
-    position: relative;
-    z-index: 1;
-    display: none;
+  .yt-icon-wrap svg {
+    width: 36px;
+    height: 36px;
+    fill: var(--red-yt);
   }
 
   .yt-link {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 14px 36px;
-    background: transparent;
-    border: 1px solid var(--ridge);
-    color: var(--bright);
+    gap: 10px;
+    padding: 14px 32px;
+    background: var(--red-yt);
+    color: #fff;
     text-decoration: none;
-    border-radius: 6px;
-    font-family: 'Azeret Mono', monospace;
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.25);
+    border: none;
   }
 
   .yt-link:active {
-    background: var(--red-yt-glow);
-    border-color: var(--red-yt);
+    transform: scale(0.97);
+    box-shadow: 0 1px 4px rgba(220, 38, 38, 0.2);
   }
 
   .yt-link svg {
-    width: 16px;
-    height: 16px;
-    fill: var(--red-yt);
+    width: 18px;
+    height: 18px;
+    fill: #fff;
   }
 
   .yt-sub {
     font-family: 'Azeret Mono', monospace;
-    font-size: 10px;
-    color: var(--ghost);
-    letter-spacing: 2px;
+    font-size: 11px;
+    color: var(--text-faint);
+    letter-spacing: 1px;
   }
 
   /* === SIGIL VIEW === */
-  .sigil-view {
-    padding: 0;
-  }
-
-  .sigil-view.active {
-    display: block;
-  }
-
-  .sigil-view iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
+  .sigil-view { padding: 0; }
+  .sigil-view.active { display: block; }
+  .sigil-view iframe { width: 100%; height: 100%; border: none; }
 
   .sigil-loader {
     position: absolute;
@@ -406,28 +358,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
   }
 
   .sigil-loader-ring {
-    width: 32px;
-    height: 32px;
-    border: 2px solid var(--panel-edge);
-    border-top-color: var(--cyan-dim);
+    width: 28px;
+    height: 28px;
+    border: 2px solid var(--border);
+    border-top-color: var(--teal);
     border-radius: 50%;
-    animation: spin 1s linear infinite;
+    animation: spin 0.8s linear infinite;
   }
 
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
+  @keyframes spin { to { transform: rotate(360deg); } }
 
   .sigil-loader-text {
-    font-family: 'Azeret Mono', monospace;
-    font-size: 10px;
-    color: var(--ghost);
-    letter-spacing: 3px;
-    text-transform: uppercase;
+    font-size: 12px;
+    color: var(--text-tertiary);
+    letter-spacing: 1px;
   }
 
   /* === FOOTER === */
@@ -435,61 +383,48 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 4px 6px 2px;
+    padding: 2px 6px;
     flex-shrink: 0;
-    position: relative;
-    z-index: 2;
   }
 
   .footer-item {
     font-family: 'Azeret Mono', monospace;
     font-size: 9px;
-    color: var(--ghost);
-    letter-spacing: 2px;
+    color: var(--text-faint);
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-  }
-
-  .footer-dot {
-    width: 4px;
-    height: 4px;
-    background: var(--cyan-dim);
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 6px;
-    vertical-align: middle;
   }
 
   /* === RESPONSIVE === */
   @media (orientation: landscape) {
-    .shell { padding: 10px 20px 6px; gap: 6px; }
-    .clock-hm { font-size: 88px; }
-    .clock-sep { font-size: 72px; }
-    .clock-sec { font-size: 22px; margin-top: 12px; }
-    .clock-date { font-size: 13px; letter-spacing: 5px; margin-top: 4px; }
-    .clock-rule { margin-top: 8px; }
-    .clock-region { padding: 2px 0; }
-    .nav-btn { padding: 8px 12px; font-size: 10px; }
-  }
-
-  @media (max-width: 810px) {
+    .shell { padding: 10px 20px 6px; gap: 8px; }
+    .clock-card { padding: 14px 32px 12px; border-radius: 12px; }
     .clock-hm { font-size: 80px; }
     .clock-sep { font-size: 64px; }
     .clock-sec { font-size: 20px; margin-top: 10px; }
+    .clock-date { font-size: 12px; margin-top: 4px; }
+    .nav-btn { padding: 9px 12px; font-size: 12px; }
+    .viewport { border-radius: 10px; }
   }
 
-  /* Entry animation */
+  @media (max-width: 810px) {
+    .clock-hm { font-size: 72px; }
+    .clock-sep { font-size: 56px; }
+    .clock-sec { font-size: 18px; margin-top: 8px; }
+  }
+
+  /* Entry */
   .shell > * {
-    animation: fade-up 0.6s ease both;
+    animation: fade-up 0.5s ease both;
   }
   .shell > *:nth-child(1) { animation-delay: 0s; }
-  .shell > *:nth-child(2) { animation-delay: 0.1s; }
-  .shell > *:nth-child(3) { animation-delay: 0.2s; }
-  .shell > *:nth-child(4) { animation-delay: 0.25s; }
-  .shell > *:nth-child(5) { animation-delay: 0.3s; }
-  .shell > *:nth-child(6) { animation-delay: 0.35s; }
+  .shell > *:nth-child(2) { animation-delay: 0.08s; }
+  .shell > *:nth-child(3) { animation-delay: 0.14s; }
+  .shell > *:nth-child(4) { animation-delay: 0.2s; }
+  .shell > *:nth-child(5) { animation-delay: 0.26s; }
 
   @keyframes fade-up {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
   }
 </style>
@@ -500,14 +435,22 @@
   <!-- HEADER -->
   <div class="header">
     <div class="header-brand">
-      <div class="brand-mark"></div>
-      <span class="brand-text">Lab Control</span>
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+      </div>
+      <span class="brand-text">Laborator Hematologie</span>
+      <span class="brand-sub">LAM</span>
     </div>
-    <span class="header-meta" id="uptime">SYS UP 0h 00m</span>
+    <div class="header-status">
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        <span id="uptime">UP 0h 00m</span>
+      </div>
+    </div>
   </div>
 
   <!-- CLOCK -->
-  <div class="clock-region">
+  <div class="clock-card">
     <div class="clock-face">
       <span class="clock-hm" id="hr">00</span>
       <span class="clock-sep">:</span>
@@ -515,7 +458,6 @@
       <span class="clock-sec" id="sc">00</span>
     </div>
     <div class="clock-date" id="dateline"></div>
-    <div class="clock-rule"></div>
   </div>
 
   <!-- NAV -->
@@ -532,21 +474,21 @@
 
   <!-- VIEWPORT -->
   <div class="viewport">
-    <!-- YouTube Music -->
     <div class="view yt-view active" id="panel-youtube">
-      <div class="yt-disc"></div>
+      <div class="yt-icon-wrap">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+      </div>
       <a href="https://music.youtube.com" class="yt-link" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
-        Deschide Player
+        Deschide YouTube Music
       </a>
       <span class="yt-sub">music.youtube.com</span>
     </div>
 
-    <!-- SIGIL -->
     <div class="view sigil-view" id="panel-sigil">
       <div class="sigil-loader" id="sigil-loader">
         <div class="sigil-loader-ring"></div>
-        <span class="sigil-loader-text">Loading SIGIL</span>
+        <span class="sigil-loader-text">Se incarca SIGIL...</span>
       </div>
       <iframe
         src="https://docs.google.com/spreadsheets/d/1QnBI6RWz254xVHdaQD83PrBR5taRvGZrEuK1j606ZRg/edit?rm=minimal"
@@ -558,14 +500,15 @@
 
   <!-- FOOTER -->
   <div class="footer">
-    <span class="footer-item"><span class="footer-dot"></span>Hematologie LAM</span>
-    <span class="footer-item">iPadOS 16</span>
+    <span class="footer-item">Spitalul Prof. Dr. Eduard Apetrei</span>
+    <span class="footer-item" id="footer-date"></span>
   </div>
 </div>
 
 <script>
   var ZILE = ['Duminica', 'Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri', 'Sambata'];
-  var LUNI = ['Ian', 'Feb', 'Mar', 'Apr', 'Mai', 'Iun', 'Iul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var LUNI = ['Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie',
+              'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie'];
 
   function pad(n) { return n < 10 ? '0' + n : n; }
 
@@ -579,8 +522,8 @@
     hrEl.textContent = pad(now.getHours());
     mnEl.textContent = pad(now.getMinutes());
     scEl.textContent = pad(now.getSeconds());
-    dateEl.textContent = ZILE[now.getDay()] + '  /  ' +
-      pad(now.getDate()) + ' ' + LUNI[now.getMonth()] + ' ' + now.getFullYear();
+    dateEl.textContent = ZILE[now.getDay()] + ',  ' +
+      now.getDate() + ' ' + LUNI[now.getMonth()] + ' ' + now.getFullYear();
   }
 
   updateClock();
@@ -599,7 +542,7 @@
     var diff = Date.now() - startTime;
     var hrs = Math.floor(diff / 3600000);
     var mins = Math.floor((diff % 3600000) / 60000);
-    uptimeEl.textContent = 'SYS UP ' + hrs + 'h ' + pad(mins) + 'm';
+    uptimeEl.textContent = 'UP ' + hrs + 'h ' + pad(mins) + 'm';
   }
   setInterval(updateUptime, 60000);
   updateUptime();
